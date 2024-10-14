@@ -2,6 +2,7 @@ module debouncer(
     input clk,             // Reloj principal
     input rst,             // Reset
     input noisy_signal,    // Señal con rebote
+    input enable,          // Señal de habilitación
     output reg clean_signal // Señal limpia sin rebote
 );
     parameter DEBOUNCE_TIME = 27000; // Tiempo de filtro para eliminar rebotes
@@ -12,7 +13,7 @@ module debouncer(
             counter <= 0;
             clean_signal <= 0;
         end
-        else begin
+        else if (enable) begin  // Solo funciona si enable está activado
             // Si la señal es constante, incrementar el contador
             if (noisy_signal == clean_signal) begin
                 counter <= 0;  // Resetear el contador si la señal es constante

@@ -18,7 +18,7 @@ module freq_divider (
             slow_clk <= 1'b0;             // Inicializar el reloj lento
         end else begin
             // Contador para dividir el reloj
-            if (clk_divider_counter == 25'd27000000 - 1) begin // 27000 para obtener 1 KHz
+            if (clk_divider_counter == 25'd27000 - 1) begin // 27000 para obtener 1 KHz
                 slow_clk <= ~slow_clk;        // Invertir el valor del reloj lento
                 clk_divider_counter <= 25'd0; // Reiniciar el contador
             end else begin
